@@ -1,0 +1,28 @@
+# PosZero
+
+PosZero is a user-invoked SDD skill suite. It creates and maintains Markdown contracts under a target project's `.sdd/` directory.
+
+## Read First
+
+1. `README.md` for user-facing purpose and layout.
+2. `AGENTS.md` for repository maintenance rules.
+3. `protocol/common-protocol.md` for shared execution protocol.
+4. `rules/poszero-routing.md` for skill routing.
+
+## Key Directories
+
+- `skills/`: source of truth for the seven PosZero skills.
+- `protocol/`: maintained shared protocol source.
+- `rules/`: suite-level agent rules.
+- `scripts/`: development tools.
+
+## Versions
+
+- `VERSION`: suite version.
+- `TEMPLATE_VERSION`: project `.sdd/templates/` contract version.
+
+## Distribution
+
+`packaging.allowlist` is the default-deny distribution boundary. `package.json.files` must stay within it.
+
+The parent repository mirrors skills into `../skills/poszero-*` and `../skills/ask-poszero` for installation. Edit `poszero/skills/` first, then sync mirrors.

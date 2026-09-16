@@ -1,0 +1,39 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify release metadata
+        run: |
+          set -euo pipefail
+          version="$(cat VERSION)"
+          test "${{ github.ref_name }}" = "v${version}"
+          test "$(node -p 'require("./package.json").version')" = "$version"
+          test "$(node -p 'require("./package.json").name')" = "poszero"
+          test "$(node -p 'require("./package.json").pi.skills')" = "./skills"
+      - run: npm run verify
+      - name: Pack npm package
+        run: npm pack --json > pack.json
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="${{ github.ref_name }}"
+          tarball="$(node -p 'require("./pack.json")[0].filename')"
+          gh release create "$tag" "$tarball" --verify-tag --generate-notes --title "$tag"

@@ -1,0 +1,12 @@
+AGENTS.md
+README.md
+TEMPLATE_VERSION
+VERSION
+llms.txt
+package.json
+packaging.allowlist
+protocol/**
+rules/**
+scripts/**
+skills/**
+templates/**

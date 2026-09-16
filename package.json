@@ -1,0 +1,27 @@
+{
+  "name": "poszero",
+  "version": "0.1.0",
+  "description": "SDD skills for agent-assisted software development.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "TEMPLATE_VERSION",
+    "VERSION",
+    "llms.txt",
+    "package.json",
+    "packaging.allowlist",
+    "protocol",
+    "rules",
+    "scripts",
+    "skills",
+    "templates"
+  ],
+  "scripts": {
+    "verify": "node scripts/verify-distribution.mjs"
+  },
+  "pi": {
+    "skills": "./skills"
+  }
+}
