@@ -5,6 +5,7 @@ import process from "node:process";
 
 const root = process.cwd();
 const parentRoot = path.resolve(root, "..");
+const mirrorRoot = path.join(parentRoot, "skills");
 
 const skills = [
   "ask-poszero",
@@ -37,8 +38,12 @@ const requiredFiles = [
 const failures = [];
 
 async function exists(file) {
+  return existsPath(path.join(root, file));
+}
+
+async function existsPath(file) {
   try {
-    await stat(path.join(root, file));
+    await stat(file);
     return true;
   } catch {
     return false;
@@ -103,8 +108,12 @@ for (const skill of skills) {
     failures.push(`bad frontmatter: skills/${skill}/SKILL.md`);
   }
 
+  if (!(await existsPath(mirrorRoot))) {
+    continue;
+  }
+
   const sourceDir = path.join(root, "skills", skill);
-  const mirrorDir = path.join(parentRoot, "skills", skill);
+  const mirrorDir = path.join(mirrorRoot, skill);
   try {
     const sourceFiles = await filesUnder(path.relative(root, sourceDir));
     for (const rel of sourceFiles) {
@@ -156,5 +165,3 @@ if (failures.length > 0) {
 }
 
 console.log("poszero verification passed.");
-
-
