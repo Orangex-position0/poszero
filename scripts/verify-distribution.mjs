@@ -27,12 +27,12 @@ const requiredFiles = [
   "packaging.allowlist",
   "protocol/common-protocol.md",
   "rules/poszero-routing.md",
-  "templates/README-template.md",
-  "templates/constitution-template.md",
-  "templates/spec-template.md",
-  "templates/plan-template.md",
-  "templates/tasks-template.md",
-  "templates/validation-template.md",
+  "skills/poszero-init/references/templates/README-template.md",
+  "skills/poszero-init/references/templates/constitution-template.md",
+  "skills/poszero-init/references/templates/spec-template.md",
+  "skills/poszero-init/references/templates/plan-template.md",
+  "skills/poszero-init/references/templates/tasks-template.md",
+  "skills/poszero-init/references/templates/validation-template.md",
 ];
 
 const failures = [];
@@ -146,7 +146,6 @@ const distributedFiles = [
   ...(await filesUnder("rules")),
   ...(await filesUnder("scripts")),
   ...(await filesUnder("skills")),
-  ...(await filesUnder("templates")),
   ...requiredFiles.filter((file) => !file.includes("/")),
 ];
 

@@ -9,8 +9,8 @@ PosZero is a user-invoked SDD skill suite. It stores shared workflow protocol, s
 ## Source Of Truth
 
 - `protocol/` is the maintained source for shared PosZero protocol.
-- skills/ is the maintained source for all PosZero skills.
-- 	emplates/ is the maintained source for .sdd/ bootstrap templates.
+- `skills/` is the maintained source for all PosZero skills.
+- `skills/poszero-init/references/templates/` is the maintained source for `.sdd/` bootstrap templates.
 - `rules/` stores suite-level agent rules that apply across skills.
 - `packaging.allowlist` is the default-deny distribution boundary.
 - `VERSION` is the suite version.
@@ -20,8 +20,8 @@ The outer `../skills/poszero-*` and `../skills/ask-poszero` directories are mirr
 
 ## Editing Rules
 
-- Change poszero/skills/ first, then sync mirrored skill directories.
-- Change root 	emplates/ first; do not edit generated or skill-local template copies as source.
+- Change `poszero/skills/` first, then sync mirrored skill directories.
+- Change `skills/poszero-init/references/templates/` first when updating bootstrap templates.
 - Change `protocol/` before changing generated skill-local protocol references.
 - Keep `AGENTS.md` as a maintenance guide; do not copy the full protocol into it.
 - Raise `TEMPLATE_VERSION` when bootstrap template requirements change.
@@ -41,4 +41,3 @@ The verifier checks required files, skill frontmatter, packaging allowlist cover
 ## Skill Routing
 
 Use `rules/poszero-routing.md` for suite-level routing. All skills are user-invoked; `ask-poszero` recommends the next skill and does not invoke another one.
-

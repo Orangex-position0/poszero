@@ -15,8 +15,7 @@
     "protocol",
     "rules",
     "scripts",
-    "skills",
-    "templates"
+    "skills"
   ],
   "scripts": {
     "verify": "node scripts/verify-distribution.mjs"

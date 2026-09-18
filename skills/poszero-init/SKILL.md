@@ -11,14 +11,14 @@ Initialize or repair the project's `.sdd/` contract. Work only in one resolved p
 ## Contract
 
 - Preconditions: user allows checking the target project; before first creation, the resolved absolute project root is confirmed.
-- Inputs: project rules and config, existing `.sdd/`, root `templates/`, target template version.
+- Inputs: project rules and config, existing `.sdd/`, `references/templates/`, target template version.
 - Branches: Fresh, Partial, Current, Compatible Upgrade, Major Migration.
 - Allowed mutations: only project-root `.sdd/`, unless the user explicitly asks otherwise.
 - Handoff: initialization result, Constitution status, template version, blockers, optional next stage.
 
 ## Steps
 
-1. Resolve the project root using `references/common-protocol.md`, then show its absolute path. Use `references/template-authoring.md` when creating or repairing templates.
+1. Resolve the project root using `references/common-protocol.md`, then show its absolute path. Use `references/templates/` and `references/template-authoring.md` when creating or repairing templates.
    Complete when the root is unique and first creation has user confirmation.
 2. Run bounded discovery in this order: user-provided rules, root agent/project docs, manifests, CI/test config, architecture/security/deploy docs, then source entry points only when evidence is still missing.
    Complete when every proposed Constitution constraint has evidence or a user decision.
@@ -36,5 +36,3 @@ Initialize or repair the project's `.sdd/` contract. Work only in one resolved p
 - Do not create `.sdd/` before showing the resolved absolute path and receiving confirmation.
 - Preserve existing customized files unless the user approves the exact replacement or merge.
 - A generic best practice is not a Constitution constraint until it has project evidence or a user decision.
-
-

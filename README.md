@@ -53,7 +53,7 @@ Path | Purpose
 `TEMPLATE_VERSION` | `.sdd/templates/` contract version.
 `protocol/` | Maintained shared protocol source.
 `skills/` | Maintained skill source.
-`templates/` | Maintained `.sdd/` bootstrap template source.
+`skills/poszero-init/references/templates/` | Maintained `.sdd/` bootstrap template source.
 `rules/` | Suite-level agent rules.
 `scripts/` | Repository development tools.
 `packaging.allowlist` | Default-deny distribution boundary.
@@ -80,4 +80,3 @@ The suite is intentionally user-invoked: each skill has one job, clear inputs, a
 ## License
 
 MIT License.
-

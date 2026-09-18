@@ -11,6 +11,17 @@ Resolve one root:
 
 Writing skills other than `poszero-init` stop when `.sdd/` is missing.
 
+## Project Templates
+
+When creating or replacing a feature document, writing skills read the target project's `.sdd/templates/<document>-template.md` first and preserve that document shape unless a user-approved customization says otherwise. Missing or unreadable project templates block the stage and should be repaired with `poszero-init`.
+
+| Skill | Output | Project Template |
+| --- | --- | --- |
+| `poszero-specify` | `spec.md` | `.sdd/templates/spec-template.md` |
+| `poszero-plan` | `plan.md` | `.sdd/templates/plan-template.md` |
+| `poszero-tasks` | `tasks.md` | `.sdd/templates/tasks-template.md` |
+| `poszero-validate` | `validation.md` | `.sdd/templates/validation-template.md` |
+
 ## Feature Slug
 
 Use ASCII lowercase kebab-case: `[a-z0-9]+(?:-[a-z0-9]+)*`. Prefer two to six meaningful words. Confirm before creating a new feature directory. Existing same-name directories require confirmation that they are the same feature.
