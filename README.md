@@ -45,6 +45,12 @@ npm run verify
 
 The package exposes skills from `./skills` for Pi-compatible skill installers.
 
+## Runtime Surface
+
+Agent installers should install `skills/` as the runtime surface. Each skill directory owns the files it needs at runtime, including `SKILL.md`, `references/`, and any skill-local assets.
+
+Root-level `protocol/`, `rules/`, `scripts/`, `package.json`, and release files are repository infrastructure for development, verification, packaging, and platform adaptation. They are part of the source package, but are not the default Agent runtime install surface.
+
 ## Repository Layout
 
 Path | Purpose

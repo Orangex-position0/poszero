@@ -18,6 +18,14 @@ PosZero is a user-invoked SDD skill suite. It stores shared workflow protocol, s
 
 The outer `../skills/poszero-*` and `../skills/ask-poszero` directories are mirrors for the parent `ai-config` installer. Do not edit only the mirrors.
 
+
+## Repository Layers
+
+- Agent runtime install surface: `skills/`.
+- Skill runtime assets stay inside the owning skill directory.
+- Repository infrastructure: `protocol/`, `rules/`, `scripts/`, package metadata, release metadata, and verification config.
+- Source package contents may include infrastructure files; do not treat that as permission to add root-level runtime assets.
+
 ## Editing Rules
 
 - Change `poszero/skills/` first, then sync mirrored skill directories.
