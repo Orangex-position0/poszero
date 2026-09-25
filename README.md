@@ -16,11 +16,32 @@ Skill | When | What it does
 `poszero-tasks` | Before implementation starts | Breaks the approved Plan into verifiable `tasks.md`.
 `poszero-implement` | Working one ready task | Implements one Ready `TASK-*` and records Evidence.
 `poszero-validate` | Before accepting the result | Independently validates the approved Contract.
-`ask-poszero` | Unsure what to do next | Reads SDD state and recommends the next user-invoked skill.
+`ask-poszero` | Unsure what to do next | Explains the workflow or reads SDD state and recommends the next user-invoked skill.
+
+## Recommended Flow
+
+```mermaid
+flowchart LR
+    A[ask-poszero] --> B[poszero-init]
+    B --> C{Workflow Profile}
+    C -->|Lite| D[change.md]
+    C -->|Standard| E[poszero-specify]
+    C -->|Deep| E
+    E --> F[poszero-plan]
+    F --> G[poszero-tasks]
+    D --> H[poszero-implement]
+    G --> H
+    H --> I{Validation}
+    I -->|Standard: batch Contract Check| J[Done]
+    I -->|Deep: independent Validate| K[poszero-validate]
+    K --> J
+```
+
+`ask-poszero` is informational and does not invoke another Skill. Lite may skip Spec, Plan, and Tasks when existing execution input is sufficient.
 
 ## Project Output
 
-PosZero writes project state to `.sdd/` in the target project:
+PosZero writes project state to `.sdd/` in the target project. Init asks once for Chinese or English document templates and records the choice in `.sdd/README.md`; later stages reuse it unless explicitly changed. Task-related checks gate local completion/commits; independent required project checks gate final validation.
 
 ```text
 .sdd/
@@ -28,8 +49,9 @@ PosZero writes project state to `.sdd/` in the target project:
 ├── constitution.md
 ├── templates/
 └── <feature-slug>/
-    ├── spec.md
-    ├── plan.md
+    ├── change.md   # Lite workflow only
+    ├── spec.md     # Standard / Deep workflow
+    ├── plan.md     # Standard / Deep workflow
     ├── tasks.md
     └── validation.md
 ```

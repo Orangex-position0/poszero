@@ -1,39 +1,37 @@
 ---
 name: poszero-specify
-description: "将问题整理为可批准的 PosZero spec.md。"
+description: "Create or revise an approvable feature specification."
 disable-model-invocation: true
 ---
 
 # PosZero Specify
 
-Create or revise one feature `spec.md` under `.sdd/<feature-slug>/`.
+Create or revise a Lite `change.md` or a Standard / Deep `spec.md` under `.sdd/<feature-slug>/`.
 
 ## Contract
 
 - Preconditions: Approved Constitution; user provides a problem or existing requirement input.
 - Inputs: Constitution constraints, user goals, existing or external requirement material.
-- Branches: New Spec, Revise Existing, Import External Input, Blocked Upstream.
-- Allowed mutations: selected feature `spec.md`; a new feature directory only after slug confirmation.
-- Handoff: spec revision/status, depth, Readiness Check result, unresolved questions, optional Plan path.
+- Branches: Lite Change, New Spec, Revise Existing, Import External Input, Blocked Upstream.
+- Allowed mutations: selected feature `change.md` or `spec.md`; a new feature directory only after slug confirmation.
+- Handoff: Workflow Profile, change or spec revision/status, depth, Review Packet, unresolved questions, optional Plan path.
 
 ## Steps
 
-1. Resolve project and feature, then read applicable constraints using `references/common-protocol.md` and spec structure rules using `references/spec-authoring.md`.
+1. Resolve project and feature, then read applicable constraints using `references/protocol/core-protocol.md`, workflow rules using `references/protocol/workflow-profile.md`, risk rules using `references/protocol/risk-classification.md`, `references/protocol/specify-protocol.md`, and `references/protocol/review-protocol.md`, and spec structure rules using `references/spec-authoring.md`.
    Complete when root, feature, and requirement input are unique and valid.
-2. Select the shallowest sufficient spec depth: `lite`, `standard`, or `deep`.
-   Complete when depth and reason are recorded, and any user-requested lower depth has been challenged when risk triggers require more.
-3. Converge Product Context in this order: Problem, User / Scenario, Goal, Non-Goals, Acceptance Criteria.
-   Complete when only implementation-affecting product context remains; full PRD material is excluded or linked.
-4. Fill System Architecture and Program Design only when the selected depth or risk triggers require them.
-   Complete when architecture impact and program design are either addressed or explicitly marked not applicable.
-5. Extract Requirements, Edge Cases, Constraints, Assumptions, and Open Questions.
-   Complete when every requirement names observable behavior and unknown facts are not presented as confirmed requirements.
-6. Create a Vertical Slice Plan.
-   Complete when every slice is an independently implementable, integrable, and verifiable end-to-end increment.
-7. Allocate stable IDs and build traceability.
-   Complete when every active requirement connects to at least one scenario, acceptance criterion, or slice.
-8. Run the Readiness Check and ask for approval.
-   Complete when major findings and open questions are resolved or explicitly accepted, and Approval is recorded; otherwise status remains In Review.
+2. Select or read the Feature Workflow Profile using the risk-classification procedure.
+   Complete when hard triggers and soft factors are recorded, the level is recommended, review and validation modes are derived, and the result is persisted in `change.md` for Lite or `spec.md` for Standard / Deep; a hard-trigger downgrade has explicit user confirmation.
+3. If the Profile is `lite`, check for an existing `spec.md` in the Feature directory before creating or revising the minimal `change.md`.
+   Complete when any old Spec is archived or explicitly migrated after user confirmation, no conflicting active Spec remains, and Goal, Non-Goals, Scope, Acceptance Criteria, Verification, Result, and Handoff are present; skip the full Spec steps and proceed to Implement when ready.
+4. For Standard / Deep, use the selected Profile level as the Spec depth; record its evidence once rather than reclassifying risk.
+   Complete when depth matches the Profile and any user-requested downgrade has an explicit decision.
+5. Resolve the product contract in dependency order: problem and actor → goals, in-scope boundaries, and non-goals → observable acceptance; use existing evidence without re-asking settled facts. Discuss changed business boundaries, data meaning, and externally observable contracts when relevant. Record requirements, edge cases, inherited constraints, assumptions, and unresolved decisions in the selected-language template.
+   Complete when acceptance is verifiable, no missing decision is silently assumed, and implementation design is left for Plan.
+6. Link requirements to acceptance and scenarios at the depth required by the Profile; leave batch boundaries, slice order, and architecture to Plan.
+   Complete when the handoff identifies the contract scope without prescribing implementation work.
+7. Present the Review Packet and Readiness Check for Standard / Deep, then request direct approval of this document revision.
+   Complete when decision-relevant items are resolved or explicitly accepted and Approval is recorded; otherwise status remains In Review.
 
 ## Gate
 
