@@ -27,15 +27,15 @@ const requiredFiles = [
   "packaging.allowlist",
   "protocol/common-protocol.md",
   "rules/poszero-routing.md",
-  "skills/poszero-init/references/templates/README-template.md",
-  "skills/poszero-init/references/templates/constitution-template.md",
-  "skills/poszero-init/references/templates/spec-template.md",
-  "skills/poszero-init/references/templates/plan-template.md",
-  "skills/poszero-init/references/templates/tasks-template.md",
-  "skills/poszero-init/references/templates/validation-template.md",
 ];
 
 const failures = [];
+const templateNames = ["README", "change", "constitution", "spec", "plan", "tasks", "validation"];
+for (const language of ["en", "zh-CN"]) {
+  for (const name of templateNames) {
+    requiredFiles.push(`skills/poszero-init/references/templates/${language}/${name}-template.md`);
+  }
+}
 
 async function exists(file) {
   return existsPath(path.join(root, file));
@@ -88,6 +88,23 @@ for (const file of requiredFiles) {
   if (!(await exists(file))) {
     failures.push(`missing required file: ${file}`);
   }
+}
+
+for (const name of templateNames) {
+  const base = "skills/poszero-init/references/templates";
+  const englishPath = `${base}/en/${name}-template.md`;
+  const chinesePath = `${base}/zh-CN/${name}-template.md`;
+  if (!(await exists(englishPath)) || !(await exists(chinesePath))) continue;
+  const [english, chinese] = await Promise.all([
+    readFile(path.join(root, englishPath), "utf8"),
+    readFile(path.join(root, chinesePath), "utf8"),
+  ]);
+  const headings = (text) => [...text.matchAll(/^## /gm)].length;
+  if (headings(english) !== headings(chinese)) failures.push(`template section drift: ${name}`);
+  const fields = (text) => [...text.matchAll(/^\| ([A-Za-z][A-Za-z /?]+) \|/gm)].map((m) => m[1]).sort();
+  if (JSON.stringify(fields(english)) !== JSON.stringify(fields(chinese))) failures.push(`template field drift: ${name}`);
+  const placeholders = (text) => [...text.matchAll(/\{\{[A-Z_]+\}\}/g)].map((m) => m[0]).sort();
+  if (JSON.stringify(placeholders(english)) !== JSON.stringify(placeholders(chinese))) failures.push(`template placeholder drift: ${name}`);
 }
 
 for (const skill of skills) {

@@ -1,6 +1,6 @@
 ---
 name: poszero-init
-description: "初始化或检查项目级 .sdd/ 基础设施与 Constitution。"
+description: "Initialize or repair a project's .sdd/ foundation and Constitution."
 disable-model-invocation: true
 ---
 
@@ -22,11 +22,11 @@ Initialize or repair the project's `.sdd/` contract. Work only in one resolved p
    Complete when the root is unique and first creation has user confirmation.
 2. Run bounded discovery in this order: user-provided rules, root agent/project docs, manifests, CI/test config, architecture/security/deploy docs, then source entry points only when evidence is still missing.
    Complete when every proposed Constitution constraint has evidence or a user decision.
-3. Check `.sdd/` completeness and template version.
-   Complete when missing files, customizations, version differences, and conflicts are listed.
+3. Check `.sdd/` completeness, template version, and document language. For a new project ask once for Chinese or English and record it in `.sdd/README.md`; for existing projects reuse the recorded choice, asking only if missing or conflicting. Select `references/templates/en/` or `references/templates/zh-CN/`.
+   Complete when missing files, customizations, version differences, language, and conflicts are listed.
 4. Draft the smallest Constitution and file-change proposal.
    Complete when long-lived constraints, Normative References, Effective Scope, and Version Control Policy are reviewable.
-5. After approval, write only the approved changes.
+5. After approval, write only the approved changes. Copy the chosen directory's templates into the flat `.sdd/templates/` directory without changing filenames and replace `Document Language: en | zh-CN` with the selected single value in `.sdd/README.md`.
    Complete when customized files without approval are unchanged and target files satisfy their contracts.
 6. Re-read the result and run the Init Gate.
    Complete when required files exist, Constitution is Approved, version records are accurate, and conflicts are reported.

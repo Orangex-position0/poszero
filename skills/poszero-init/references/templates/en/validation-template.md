@@ -7,9 +7,16 @@
 | Current Result | Not Run |
 | Latest Run | Pending |
 
+## Workflow Profile
+
+- Level: standard | deep
+- Validation Mode: batch-contract-check | independent
+
 ## Inputs
 
 ## Validation Scope
+
+Run required project-level checks independently; list commands and evidence under Runs. Unrun or unavailable required checks are BLOCKED, not PASS.
 
 ## Contract Coverage
 

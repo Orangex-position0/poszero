@@ -10,6 +10,12 @@
 | Approved At | Pending |
 | Approval Note | Pending |
 
+## Workflow Profile
+
+- Level: standard | deep
+- Review Mode: consolidated | checkpointed
+- Validation Mode: batch-contract-check | independent
+
 ## Inputs
 
 - `spec.md`
@@ -31,7 +37,7 @@ Each implementation task must include the target file path when code, template, 
 | Slice | Task | Acceptance Check | Verification Command |
 | --- | --- | --- | --- |
 
-`Verification Command` may be `N/A - docs only`, but `Acceptance Check` must still be specific.
+`Verification Command` may be `N/A - docs only`, but `Acceptance Check` must still be specific. Task-related tests and required local regression checks must pass before a task is Done or locally committed; record commands and results in Implementation Evidence.
 
 ## Tasks
 
@@ -57,5 +63,16 @@ Each implementation task must include the target file path when code, template, 
 | --- | --- | --- | --- | --- |
 
 ## Ready Analysis
+
+## Execution Packet
+
+- Current Batch / Slice:
+- Goal and Acceptance Criteria:
+- Non-Goals:
+- Relevant Modules / Interfaces:
+- Technical Decisions:
+- Test Seam and Commands:
+- Required Evidence:
+- Source Documents and Revisions:
 
 ## Approval
